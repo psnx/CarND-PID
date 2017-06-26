@@ -3,9 +3,9 @@
 #include <stdlib.h> 
 
 using namespace std;
-PID::Twiddle() {}
+Twiddle::Twiddle() {}
 
-PID::~Twiddle() {}
+Twiddle::~Twiddle() {}
 /*
 * TODO: Complete the PID class.
 */
@@ -13,35 +13,41 @@ PID::~Twiddle() {}
 void Twiddle::Init(int cycle_length)
 {
     this -> cycle_length = cycle_length;
-    delta = 0.01;
+    delta = 0.001;
+    cycle_counter = 0;
+    prevAvgCte = 100; 
 
 
 }
 
-void Twiddle::Update()
+double Twiddle::Update(double cte, double K)
 {
-    cycle_counter++
+    this -> K = K;
+    this -> cte = cte;
+    cycle_counter++;
     sumCte += abs(cte);
     if (cycle_counter > cycle_length){
-       Tune();
+       K = Tune();
+       cycle_counter = 0;
+       sumCte = 0;
     }
+    return K;
 }   
 
 
 double Twiddle::Tune()
 {
     
-    avgCte = sumCte / double(cycle_length)
-    if (sumCte < prevAvgCte){        
-        K += delta;
-        prev_delta = delta;        
-    } else{        
-        K = -dKp/2.0
-        K += dKp;
-        prev_delta = dKp;
-        turn = true;
+    avgCte = sumCte / double(cycle_length);
+
+    if (avgCte < prevAvgCte) 
+    {        
+        K += delta;        
+    } else {             
+        delta = -delta/2.0;
+        K += delta;        
     }
-    prevAvgCte = avgCte
+    prevAvgCte = avgCte;    
     return K;
 
 }

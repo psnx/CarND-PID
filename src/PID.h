@@ -1,6 +1,8 @@
 #ifndef PID_H
 #define PID_H
 #include <math.h>
+#include "Twiddle.h"
+
 
 class PID {
 public:
@@ -17,6 +19,10 @@ public:
   double Kp;
   double Ki;
   double Kd;
+  Twiddle twiddle;
+
+  int cycle_counter;
+
 
   /*
   * Constructor

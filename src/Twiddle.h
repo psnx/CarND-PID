@@ -1,6 +1,7 @@
-#ifndef PID_H
-#define PID_H
+#ifndef TWIDDLE_H
+#define TWIDDLE_H
 #include <math.h>
+#include "Twiddle.h"
 
 class Twiddle {
 public:
@@ -8,17 +9,20 @@ public:
   * Errors
   */
     int cycle_length;
-    int cycle_counter
-    double dKp_prev;
-    double dKd_prev;
+    int cycle_counter;
     double prev_cte;
+    double sumCte;
+    double prev_delta;
+    double cte;
+    double delta;
 
   /*
   * Coefficients
   */ 
-  double Kp;
-  double avgCte;
+  double K;
+  double avgCte;    
   double prevAvgCte;
+
 
   /*
   * Constructor
@@ -33,12 +37,12 @@ public:
   /*
   * Initialize PID.
   */
-  void Init(int cycle_length, double delta);
+  void Init(int cycle_length);
 
   /*
   * Update the PID error variables given cross track error.
   */
-  void Update();
+  double Update(double cte, double K);
 
   /*
   * Calculate the total PID error.
@@ -47,4 +51,4 @@ public:
   
 };
 
-#endif /* PID_H */
+#endif /* TWIDDLE_H */
