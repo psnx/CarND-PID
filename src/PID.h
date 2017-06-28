@@ -19,9 +19,12 @@ public:
   double Kp;
   double Ki;
   double Kd;
-  Twiddle twiddle;
+  Twiddle p_twiddle;
+  Twiddle i_twiddle;
+  Twiddle d_twiddle;
 
   int cycle_counter;
+  int d_it;
 
 
   /*

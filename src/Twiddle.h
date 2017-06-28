@@ -15,6 +15,7 @@ public:
     double prev_delta;
     double cte;
     double delta;
+    int iteration;
 
   /*
   * Coefficients
@@ -37,7 +38,7 @@ public:
   /*
   * Initialize PID.
   */
-  void Init(int cycle_length);
+  void Init(int cycle_length, double delta);
 
   /*
   * Update the PID error variables given cross track error.
