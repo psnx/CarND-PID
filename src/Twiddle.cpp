@@ -46,7 +46,7 @@ double Twiddle::Tune()
     {        
         K += delta;        
     } else {             
-        delta = -delta/2.0;
+        delta = -delta/2.0; 
         K += delta;        
     }
     prevAvgCte = avgCte;    

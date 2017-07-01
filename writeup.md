@@ -62,7 +62,7 @@ The method has its clear shortcomings in general:
 
 ## Limitations if PID control
 
-The PID model is blind in a sense as it does not know where the vehicle is heading or what its momentum vector is so it cannot choose a more favorable set of gains. It is a feedback closed loop control system with constant parameters without taking the real process into account: it is always lagging (as opposed to on-time or upfront), reactive, linear and prone to oscillation.
+The PID model is blind in a sense as it does not know where the vehicle is heading or what its momentum vector is, so it cannot choose a more favorable set of gains. It is a feedback closed loop control system with constant parameters without taking the real process into account: it is always lagging (as opposed to on-time or upfront), reactive, linear and prone to oscillation.
 
 ## Possible Improvements:
 Cascade control with an inner and an outer loop would be an easy way. The outer loop would set the actual set-point of the physical system, for example pulling the set trajectory towards the inner side of the curvature of the road. The inner loop would be the actual PID controller controlling the car. (new parameters required).

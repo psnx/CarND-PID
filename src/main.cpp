@@ -46,9 +46,9 @@ int main(int argc, char *argv[])
     init_Kd = atof(argv[3]);
   }else
   {
-    std :: cout << "\nDeault parameters\n";
-    init_Kp = -0.04;
-    init_Ki = -0.001;
+    std :: cout << "\nInit w / deault parameters\n";
+    init_Kp = -0.05;
+    init_Ki = -0.0015;
     init_Kd = -1.8;
   }
 
@@ -79,8 +79,10 @@ int main(int argc, char *argv[])
           double throttle = 0.3;
           pid.UpdateError(cte);          
           steer_value = pid.TotalError();
+          
+          
           if (steer_value < abs(0.3) && cte < 0.2) {throttle += 0.08; }
-          if (steer_value > abs(0.5) || cte > 0.8) {throttle -= 0.4; }
+          if (steer_value > abs(0.5) || cte > 0.6) {throttle -= 0.4; }
           if (throttle < 0.1 ) {throttle = 0.1;}
           
           // DEBUG
