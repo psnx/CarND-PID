@@ -38,7 +38,7 @@ void PID::UpdateError(double cte)
     d_error = cte - p_error;
     p_error = cte;
     i_error += cte;    
-    
+    /*
     if (d_twiddle.iteration < 6){ Kd = d_twiddle.Update(cte, Kd); }
     else {
         if (p_twiddle.iteration < 6){ Kp = p_twiddle.Update(cte, Kp); }
@@ -46,7 +46,8 @@ void PID::UpdateError(double cte)
             if (i_twiddle.iteration < 6){ Kp = i_twiddle.Update(cte, Ki); }
         }
     }
-
+    */
+    
     //Kp = p_twiddle.Update(cte, Kp);
     //Ki = i_twiddle.Update(cte, Ki);
     

@@ -31,12 +31,26 @@ std::string hasData(std::string s) {
 int main(int argc, char *argv[])
 {
   uWS::Hub h;
+  double init_Kp;
+  double init_Ki;
+  double init_Kd;
+
 
   PID pid;
   // TODO: Initialize the pid variable.
-  double init_Kp = atof(argv[1]);
-  double init_Ki = atof(argv[2]);
-  double init_Kd = atof(argv[3]);
+  if (argc == 4) 
+  {
+    std :: cout << "\nCustom parameters supplied\n";
+    init_Kp = atof(argv[1]);
+    init_Ki = atof(argv[2]);
+    init_Kd = atof(argv[3]);
+  }else
+  {
+    std :: cout << "\nDeault parameters\n";
+    init_Kp = -0.04;
+    init_Ki = -0.001;
+    init_Kd = -1.8;
+  }
 
   pid.Init(init_Kp, init_Ki, init_Kd);
 
@@ -65,7 +79,7 @@ int main(int argc, char *argv[])
           double throttle = 0.3;
           pid.UpdateError(cte);          
           steer_value = pid.TotalError();
-          if (steer_value < abs(0.3) && cte < 0.2) {throttle += 0.1; }
+          if (steer_value < abs(0.3) && cte < 0.2) {throttle += 0.08; }
           if (steer_value > abs(0.5) || cte > 0.8) {throttle -= 0.4; }
           if (throttle < 0.1 ) {throttle = 0.1;}
           
